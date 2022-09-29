@@ -19,8 +19,13 @@ public class Detection : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        detected = true;
-        pos = other.transform.position;
+        
+        if (other.CompareTag("Detector")){
+            
+            detected = true;
+            pos = other.transform.position;
+        }
+        
     }
 
     private void OnTriggerExit(Collider other)

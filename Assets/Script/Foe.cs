@@ -21,6 +21,7 @@ public class Foe : MonoBehaviour
     protected float m_xp;
     [SerializeField]
     protected float atkSpeed;
+    protected float compter=0;
     [SerializeField]
     protected float armorPen;
 
@@ -35,20 +36,9 @@ public class Foe : MonoBehaviour
             rb = GetComponent<Rigidbody>();
         }
     }
-
-    protected void OnTriggerStay(Collider other)
-    {
-        if (CompareTag("Player"))
-        {
-            PlayerStats.hited(m_atk);
-        }
-    }
-
     public void takeDamage(float damage)
     {
-        Debug.Log("here3");
         m_lp -= damage * (1 - m_res);
-        Debug.Log(m_lp);
         isAlive();
     }
 

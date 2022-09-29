@@ -62,6 +62,7 @@ public class PlayerStats : MonoBehaviour
 
     public static void hited(float damage)
     {
+        //Debug.Log(m_life);
         m_life -= damage * (1 - m_damageMiti / 100);
     }
 
@@ -73,6 +74,8 @@ public class PlayerStats : MonoBehaviour
             m_xp -= m_xpToLvlUp;
             m_lvl++;
         }
+        Hub.setXp(m_xp);
+        
     }
 
     private void Update()

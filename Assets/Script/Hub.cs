@@ -13,6 +13,11 @@ public class Hub : MonoBehaviour
     static private Slider health;
     static private RectTransform healtBorder;
 
+    [SerializeField]
+    private Slider ns_xp;
+
+    static private Slider xp;
+
 
 
     static private float sizeHpBorder = 500;
@@ -20,6 +25,8 @@ public class Hub : MonoBehaviour
 
     private void Start()
     {
+        xp = ns_xp;
+
         health = ns_health;
         healtBorder = ns_healtBorder;
 
@@ -39,5 +46,13 @@ public class Hub : MonoBehaviour
     public static void setLife(float value)
     {
         health.value = value;
+    }
+
+    public static void setXp(float value)
+    {
+        xp.value = value;
+        Debug.Log(xp.value);
+        Debug.Log("///////////////");
+        Debug.Log(value);
     }
 }
