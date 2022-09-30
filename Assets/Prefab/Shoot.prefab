@@ -114,7 +114,7 @@ MonoBehaviour:
   m_damage: 1
   m_penetration: 0
   m_velocity: 1
-  m_thisCollider: {fileID: 99272775348943851}
+  m_thisCollider: {fileID: 99272775348943857}
 --- !u!54 &99272775348943857
 Rigidbody:
   m_ObjectHideFlags: 0

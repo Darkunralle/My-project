@@ -6,6 +6,12 @@ public class FoeCac : Foe
 {
     private Vector3 m_Position;
     private float dist;
+    private Vector3 m_gravityEffect = new Vector3(0, 0, 0);
+    private float m_gravity = -9.81f;
+    [SerializeField]
+    private Transform m_groundCheck;
+    [SerializeField]
+    private LayerMask groundLayer;
 
     private void Update()
     {
@@ -27,6 +33,15 @@ public class FoeCac : Foe
         {
             compter = 0;
         }
+
+        if (!isGrounded())
+        {
+            m_gravityEffect.y += m_gravity * Time.deltaTime;
+        }
+
+        Vector3 posi = new Vector3(rb.position.x, rb.position.y + m_gravityEffect.y * Time.deltaTime, rb.position.z);
+
+        rb.transform.position = posi;
     }
 
     protected void OnTriggerStay(Collider other)
@@ -37,6 +52,20 @@ public class FoeCac : Foe
             compter = atkSpeed;
             Debug.Log(compter);
         }
+    }
+    public bool isGrounded()
+    {
+        // Crée une sphere invisible et check si elle colide avec un layer "Ground"
+        bool isGrounded = Physics.CheckSphere(m_groundCheck.position, 0.5f, groundLayer);
+
+        // Force reset de la gravité a -1
+        if (isGrounded && m_gravityEffect.y < 0)
+        {
+
+            m_gravityEffect.y = -2f;
+        }
+
+        return isGrounded;
     }
 
 }

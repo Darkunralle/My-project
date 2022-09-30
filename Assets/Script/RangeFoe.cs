@@ -16,6 +16,21 @@ public class RangeFoe : Foe
 
     private void Update()
     {
-
+        Debug.Log(aggroArea.getDetected());
+        if (aggroArea.getDetected() && compter == 0)
+        {
+            rb.transform.LookAt(aggroArea.getPos());
+            shoot();
+            compter = atkSpeed;
+            Debug.Log(compter);
+        }
+        if (compter > 0)
+        {
+            compter -= Time.deltaTime;
+        }
+        if (compter < 0)
+        {
+            compter = 0;
+        }
     }
 }

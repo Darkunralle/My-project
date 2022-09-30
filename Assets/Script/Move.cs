@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
+    [SerializeField]
     private CharacterController m_characterController;
     [SerializeField]
     private Transform m_groundCheck;
@@ -13,7 +14,9 @@ public class Move : MonoBehaviour
     private Camera cam;
     [SerializeField]
     private LayerMask groundLayer;
-
+    [SerializeField]
+    private Rigidbody rb;
+    
     private Vector3 m_gravityEffect = new Vector3(0,0,0);
     private float m_gravity = -9.81f;
 
@@ -31,7 +34,7 @@ public class Move : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Confined;
     }
-
+    
     public bool isGrounded()
     {
         // Crée une sphere invisible et check si elle colide avec un layer "Ground"
@@ -58,26 +61,29 @@ public class Move : MonoBehaviour
         move.z += m_characterController.transform.position.z;
 
         m_characterController.transform.position = move;*/
-
+        
         m_characterController.Move(move * Time.deltaTime * m_speed);
-
+        
         if (!isGrounded())
         {
             m_gravityEffect.y += m_gravity * Time.deltaTime;
         }
 
         m_characterController.Move(m_gravityEffect * Time.deltaTime);
-
-
+        
+        
+        
 
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hitData, 1000 , groundLayer))
         {
             Vector3 pos = hitData.point;
-            pos.y = 0;
-
-            m_characterController.transform.LookAt(pos);
+            pos.y = rb.transform.position.y;
+            rb.transform.LookAt(pos);
+            
         }
         
+        rb.transform.localPosition = Vector3.zero;
+
     }
 }

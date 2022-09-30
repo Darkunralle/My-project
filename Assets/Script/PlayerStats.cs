@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     static private float m_life = 100;
-    static private int m_maxLife = 100;
+    static private float m_maxLife = 100;
     static private float m_damageMiti = 0;
     static private int m_maxDamageMiti = 80;
     static private float m_speed = 5f;
@@ -14,9 +14,18 @@ public class PlayerStats : MonoBehaviour
     static private float m_xpToLvlUp = 100;
     static private float m_xpMulti = 1;
     static private int m_lvl = 1;
+    static private float m_atkSpeedBonus = 0;
+    static private float m_crit = 0;
 
     //getter
-
+    public static float getAtkSpeedBonus()
+    {
+        return m_atkSpeedBonus;
+    }
+    public static float getCrit()
+    {
+        return m_crit;
+    }
     public static float getLife()
     {
         return m_life;
@@ -33,12 +42,20 @@ public class PlayerStats : MonoBehaviour
 
 
     //Setter
+    public static void setAtkSpeedBonus(float value)
+    {
+        m_atkSpeedBonus += value;
+    }
+    public static void setCrit(float value)
+    {
+        m_crit += value;
+    }
     public static void setStr(float str)
     {
         m_str += str;
     }
 
-    public static void setVita(int vita)
+    public static void setVita(float vita)
     {
         m_maxLife += vita;
         m_life += vita;

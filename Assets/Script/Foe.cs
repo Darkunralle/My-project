@@ -32,7 +32,7 @@ public class Foe : MonoBehaviour
             aggroArea = GetComponentInChildren<Detection>();
         }
         if (rb == null)
-        {
+        { 
             rb = GetComponent<Rigidbody>();
         }
     }
@@ -50,6 +50,9 @@ public class Foe : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    
+
 
 
 
