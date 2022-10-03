@@ -16,6 +16,10 @@ public class PlayerStats : MonoBehaviour
     static private int m_lvl = 1;
     static private float m_atkSpeedBonus = 0;
     static private float m_crit = 0;
+    static private float m_regen = 0;
+
+    private float regenT = 1;
+    private float baseTimer = 0;
 
     //getter
     public static float getAtkSpeedBonus()
@@ -75,6 +79,10 @@ public class PlayerStats : MonoBehaviour
             m_damageMiti = m_maxDamageMiti;
         }
     }
+    public static void setRegen(float value)
+    {
+        m_regen += value;
+    }
 
 
     public static void hited(float damage)
@@ -102,6 +110,19 @@ public class PlayerStats : MonoBehaviour
 
         }
 
+
+
+        baseTimer += Time.deltaTime;
+        if (baseTimer >= regenT)
+        {
+            baseTimer = 0;
+            m_life += m_regen;
+        }
+
+        if (m_life > m_maxLife)
+        {
+            m_life = m_maxLife;
+        }
         Hub.setLife(m_life);
     }
 }

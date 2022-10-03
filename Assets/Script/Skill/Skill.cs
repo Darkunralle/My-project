@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class Skill : ScriptableObject
 {
-    private enum statsChange { life, res, speed, str, crit, atkSpeed };
+    private enum statsChange { life, res, speed, str, crit, atkSpeed,regen };
     [SerializeField]
     private string skillName;
     [SerializeField]
@@ -46,6 +46,9 @@ public class Skill : ScriptableObject
                     break;
                 case statsChange.atkSpeed:
                     PlayerStats.setAtkSpeedBonus(value);
+                    break;
+                case statsChange.regen:
+                    PlayerStats.setRegen(value);
                     break;
                 default:
                     break;

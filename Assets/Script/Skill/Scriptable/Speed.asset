@@ -15,5 +15,5 @@ MonoBehaviour:
   skillName: Vitesse
   desc: Augmente la vitesse
   stats: 2
-  value: 0.5
-  clickNumber: 3
+  value: 1
+  clickNumber: 5
